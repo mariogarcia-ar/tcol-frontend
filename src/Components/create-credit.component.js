@@ -5,22 +5,22 @@ import { useAlert } from 'react-alert'
 
 import config from '../config/index';
 
-import StudentForm from "./StudentForm";
+import CreditForm from "./CreditForm";
 
 
-// Create Student Component
-const CreateStudent = () =>{
+// Create Credit Component
+const CreateCredit = () =>{
     const [formValues, setFormValues] = useState({name:'', email:'', rollno:''});
-    const _url = config.API_URL+"/students/create-student/";
+    const _url = config.API_URL+"/credits/create-credit/";
     let navigate = useNavigate();
     const alert = useAlert();
 
-    const onSubmit = studentObject =>{
-        axios.post(_url, studentObject)
+    const onSubmit = creditObject =>{
+        axios.post(_url, creditObject)
                 .then(res =>{
                     if(res.status === 200){
-                        alert.success('Student successfully created');
-                        navigate("/student-list");
+                        alert.success('Credit successfully created');
+                        navigate("/credit-list");
                     }else{
                         Promise.reject();
                     }
@@ -29,10 +29,10 @@ const CreateStudent = () =>{
     }
 
     return (
-        <StudentForm initialValues={formValues} onSubmit={onSubmit} enableReinitilize>
-            Create Student
-        </StudentForm>
+        <CreditForm initialValues={formValues} onSubmit={onSubmit} enableReinitilize>
+            Create Credit
+        </CreditForm>
     );
 }
 
-export default CreateStudent;
+export default CreateCredit;

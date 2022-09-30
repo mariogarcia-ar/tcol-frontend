@@ -6,21 +6,21 @@ import { Table } from "react-bootstrap";
 
 import config from '../config/index';
 
-import StudentTableRow from "./StudentTableRow";
+import CreditTableRow from "./CreditTableRow";
 
 
-// List Student Component
-const StudentList = () =>{
-    const [students, setStudents] = useState([]);
-    const _url = config.API_URL+"/students/";
+// List Credit Component
+const CreditList = () =>{
+    const [credits, setCredits] = useState([]);
+    const _url = config.API_URL+"/credits/";
     const alert = useAlert();
 
-    // load data from server and reinitilize student form
+    // load data from server and reinitilize credit form
     useEffect(() =>{
         axios.get(_url)
                 .then(res =>{
                     if(res.status === 200){ 
-                        setStudents(res.data);
+                        setCredits(res.data);
                     }else{
                         Promise.reject();
                     }
@@ -30,8 +30,8 @@ const StudentList = () =>{
 
     // iterador de las filas de las tablas
     const DataTable = () => {
-        return students.map((res, i) =>{
-            return <StudentTableRow obj={res} key={i} />;
+        return credits.map((res, i) =>{
+            return <CreditTableRow obj={res} key={i} />;
         })
     }
 
@@ -54,4 +54,4 @@ const StudentList = () =>{
     )
 }
 
-export default StudentList;
+export default CreditList;

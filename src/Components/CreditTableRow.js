@@ -5,17 +5,17 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import config from '../config/index';
 
-// List Student Component
-const StudentTableRow = (props) =>{
+// List Credit Component
+const CreditTableRow = (props) =>{
     const {_id, name, email, rollno} = props.obj;
-    const _url = config.API_URL+"/students/delete-student/"+_id;
+    const _url = config.API_URL+"/credits/delete-credit/"+_id;
     const alert = useAlert();
 
-    const deleteStudent = () =>{
+    const deleteCredit = () =>{
         axios.delete(_url)
                 .then(res =>{
                     if(res.status === 200){
-                        alert.success('Student successfully deleted');
+                        alert.success('Credit successfully deleted');
                         window.location.reload();
                     }else{
                         Promise.reject();
@@ -30,11 +30,11 @@ const StudentTableRow = (props) =>{
             <td>{email}</td>
             <td>{rollno}</td>
             <td>
-                <Link className="edit-link" to={'/edit-student/'+_id}>Edit</Link>
-                <Button onClick={deleteStudent} size="sm" variant="danger">Delete</Button>
+                <Link className="edit-link" to={'/edit-credit/'+_id}>Edit</Link>
+                <Button onClick={deleteCredit} size="sm" variant="danger">Delete</Button>
             </td>
         </tr>
     )
 }
 
-export default StudentTableRow;
+export default CreditTableRow;

@@ -6,9 +6,9 @@ import "./App.css";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import CreateStudent from "./Components/create-student.component";
-import EditStudent from "./Components/edit-student.component";
-import StudentList from "./Components/student-list.component";
+import CreateCredit from "./Components/create-credit.component";
+import EditCredit from "./Components/edit-credit.component";
+import CreditList from "./Components/credit-list.component";
 
 
 const App = () =>{
@@ -18,10 +18,10 @@ const App = () =>{
         <header className="App-header">
             <Navbar bg="dark" variant="dark">
               <Container>
-                <Navbar.Brand><Link to={"./create-student"}  className="nav-link">React MERN stack App</Link></Navbar.Brand>
+                <Navbar.Brand><Link to={"./create-credit"}  className="nav-link">React MERN stack App</Link></Navbar.Brand>
                 <Navbar className="justify-content-end">
-                  <Nav><Link to={"./create-student"}  className="nav-link">Create Student</Link></Nav>
-                  <Nav><Link to={"./student-list"}  className="nav-link">Student List</Link></Nav>
+                  <Nav><Link to={"./create-credit"}  className="nav-link">Create Credit</Link></Nav>
+                  <Nav><Link to={"./credit-list"}  className="nav-link">Credit List</Link></Nav>
                 </Navbar>
               </Container>
             </Navbar>
@@ -32,10 +32,10 @@ const App = () =>{
             <Col md={12}>
                 <div className="wrapper">
                   <Routes>
-                    <Route exact path="/" element={<CreateStudent/>}/>
-                    <Route exact path="/create-student" element={<CreateStudent/>}/>
-                    <Route exact path="/edit-student/:id" element={<EditStudent/>}/>
-                    <Route exact path="/student-list" element={<StudentList/>}/>
+                    <Route exact path="/" element={<CreateCredit/>}/>
+                    <Route exact path="/create-credit" element={<CreateCredit/>}/>
+                    <Route exact path="/edit-credit/:id" element={<EditCredit/>}/>
+                    <Route exact path="/credit-list" element={<CreditList/>}/>
                   </Routes>
 
                 </div>

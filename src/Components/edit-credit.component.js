@@ -5,23 +5,23 @@ import { useAlert } from 'react-alert'
 
 import config from '../config/index';
 
-import StudentForm from "./StudentForm";
+import CreditForm from "./CreditForm";
 
-// Create Student Component
-const EditStudent = (props) =>{
+// Create Credit Component
+const EditCredit = (props) =>{
     let params = useParams();
     let navigate = useNavigate();
     const alert = useAlert();
 
     const [formValues, setFormValues] = useState({name:'', email:'', rollno:''});
-    const _url = config.API_URL+"/students/update-student/"+params.id;
+    const _url = config.API_URL+"/credits/update-credit/"+params.id;
 
-    const onSubmit = studentObject =>{
-        axios.put(_url,studentObject)
+    const onSubmit = creditObject =>{
+        axios.put(_url,creditObject)
                 .then(res =>{
                     if(res.status === 200){
-                        alert.success('Student successfully updated');
-                        navigate("/student-list");
+                        alert.success('Credit successfully updated');
+                        navigate("/credit-list");
                     }else{
                         Promise.reject();
                     }
@@ -29,7 +29,7 @@ const EditStudent = (props) =>{
                 .catch(err => alert.error("Something went wrong "+err))
     }
 
-    // load data from server and reinitilize student form
+    // load data from server and reinitilize credit form
     useEffect(() =>{
         axios.get(_url)
                 .then(res =>{
@@ -44,10 +44,10 @@ const EditStudent = (props) =>{
     },[])
 
     return (
-        <StudentForm   initialValues={formValues} onSubmit={onSubmit} enableReinitialize>
-            Update Student
-        </StudentForm>
+        <CreditForm   initialValues={formValues} onSubmit={onSubmit} enableReinitialize>
+            Update Credit
+        </CreditForm>
     )
 }
 
-export default EditStudent;
+export default EditCredit;
