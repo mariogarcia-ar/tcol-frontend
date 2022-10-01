@@ -17,7 +17,13 @@ const EditCredit = (props) =>{
     const _url = config.API_URL+"/credits/update-credit/"+params.id;
 
     const onSubmit = creditObject =>{
-        axios.put(_url,creditObject)
+        const formData = new FormData();
+        for (let value in creditObject) {
+            formData.append(value, creditObject[value]);
+        }
+
+        // axios.post(_url, formData).
+        axios.put(_url, formData)
                 .then(res =>{
                     if(res.status === 200){
                         alert.success('Credit successfully updated');
@@ -26,16 +32,16 @@ const EditCredit = (props) =>{
                         Promise.reject();
                     }
                 })
-                .catch(err => alert.error("Something went wrong "+err))
+                .catch(err => alert.error("Something went wrong "+err))                
     }
-
+    
     // load data from server and reinitilize credit form
     useEffect(() =>{
         axios.get(_url)
                 .then(res =>{
                     if(res.status === 200){
-                        const {name, email, rollno} = res.data;
-                        setFormValues({name, email, rollno} ); 
+                        const {name, email, rollno, photo} = res.data;
+                        setFormValues({name, email, rollno, photo} ); 
                     }else{
                         Promise.reject();
                     }

@@ -10,13 +10,19 @@ import CreditForm from "./CreditForm";
 
 // Create Credit Component
 const CreateCredit = () =>{
-    const [formValues, setFormValues] = useState({name:'', email:'', rollno:''});
+    const [formValues, setFormValues] = useState({name:'', email:'', rollno:'', photo:''});
     const _url = config.API_URL+"/credits/create-credit/";
     let navigate = useNavigate();
     const alert = useAlert();
 
     const onSubmit = creditObject =>{
-        axios.post(_url, creditObject)
+        const formData = new FormData();
+        for (let value in creditObject) {
+            formData.append(value, creditObject[value]);
+        }
+
+        // axios.post(_url, formData).
+        axios.post(_url, formData)
                 .then(res =>{
                     if(res.status === 200){
                         alert.success('Credit successfully created');

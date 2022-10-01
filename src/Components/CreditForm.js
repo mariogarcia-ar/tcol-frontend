@@ -13,31 +13,45 @@ const CreditForm = (props) =>{
                     .required("Required")
     }); 
 
-
     return (
         <div className="form-wrapper">
-            <Formik {...props} validationSchema={validationSchema}>                
-                <Form>
-                    <FormGroup>
-                        <Field name="name" type="text" className="form-control"/>
-                        <ErrorMessage name="name" className="d-block invalid-feedback" component="span"/>
-                    </FormGroup>
+            <Formik {...props} validationSchema={validationSchema}>     
+            { formik  => (
+                 <Form  encType="multipart/form-data" >
+                 <FormGroup>
+                     <Field name="name" type="text" className="form-control"/>
+                     <ErrorMessage name="name" className="d-block invalid-feedback" component="span"/>
+                 </FormGroup>
 
-                    <FormGroup>
-                        <Field name="email" type="text" className="form-control"/>
-                        <ErrorMessage name="email" className="d-block invalid-feedback" component="span"/>
-                    </FormGroup>
+                 <FormGroup>
+                     <Field name="email" type="text" className="form-control"/>
+                     <ErrorMessage name="email" className="d-block invalid-feedback" component="span"/>
+                 </FormGroup>
 
-                    <FormGroup>
-                        <Field name="rollno" type="text" className="form-control"/>
-                        <ErrorMessage name="rollno" className="d-block invalid-feedback" component="span"/>
-                    </FormGroup>
+                 <FormGroup>
+                     <Field name="rollno" type="text" className="form-control"/>
+                     <ErrorMessage name="rollno" className="d-block invalid-feedback" component="span"/>
+                 </FormGroup>
 
-                    <Button variant="danger" size="lg" block="block" type="submit">
-                        {props.children}
-                    </Button>
+                 <FormGroup>
+                     <input type="file" className="form-control" onChange={(event)=>{
+                         formik.setFieldValue('photo', event.currentTarget.files[0])
+                     }}/>
+                     <ErrorMessage name="ṕhoto" className="d-block invalid-feedback" component="span"/>
+                    { formik.values.photo != '' &&
+                        <img  src={formik.values.photo} alt='photo credito' />
+                    } 
+                 </FormGroup>                    
 
-                </Form>
+
+                 
+
+                 <Button variant="danger" size="lg" block="block" type="submit">
+                     {props.children}
+                 </Button>
+
+             </Form>
+            )}           
             </Formik>
         </div>
     );
