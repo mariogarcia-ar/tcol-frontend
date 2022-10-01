@@ -10,7 +10,7 @@ import CreditForm from "./CreditForm";
 
 // Create Credit Component
 const CreateCredit = () =>{
-    const [formValues, setFormValues] = useState({name:'', email:'', rollno:'', photo:''});
+    const [formValues, setFormValues] = useState({name:'', email:'', rollno:'', photo:'', ipfs:''});
     const _url = config.API_URL+"/credits/create-credit/";
     let navigate = useNavigate();
     const alert = useAlert();

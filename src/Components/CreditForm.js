@@ -1,7 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 import {Formik, Form, Field, ErrorMessage} from "formik";
-import {FormGroup, FormControl, Button} from "react-bootstrap";
+import {FormGroup, FormControl, Button,Container, Row, Col} from "react-bootstrap";
 
 const CreditForm = (props) =>{
     const validationSchema = Yup.object().shape({
@@ -39,7 +39,18 @@ const CreditForm = (props) =>{
                      }}/>
                      <ErrorMessage name="ṕhoto" className="d-block invalid-feedback" component="span"/>
                     { formik.values.photo != '' &&
-                        <img  src={formik.values.photo} alt='photo credito' />
+                    <Container>
+                        <Row>
+                            <Col sm={6}>
+                                <span>photo: <a href={formik.values.photo} target="_blank">enlace</a></span><br/>
+                                <img  src={formik.values.photo} alt='photo credito' />
+                            </Col>
+                            <Col sm={6}>
+                                <span>ipfs: <a href={formik.values.ipfs} target="_blank">enlace</a></span><br/>
+                                <img  src={formik.values.ipfs} alt='photo credito' />
+                            </Col>
+                        </Row>
+                    </Container>
                     } 
                  </FormGroup>                    
 

@@ -13,7 +13,7 @@ const EditCredit = (props) =>{
     let navigate = useNavigate();
     const alert = useAlert();
 
-    const [formValues, setFormValues] = useState({name:'', email:'', rollno:''});
+    const [formValues, setFormValues] = useState({name:'', email:'', rollno:'', photo:'', ipfs:''});
     const _url = config.API_URL+"/credits/update-credit/"+params.id;
 
     const onSubmit = creditObject =>{
@@ -40,8 +40,8 @@ const EditCredit = (props) =>{
         axios.get(_url)
                 .then(res =>{
                     if(res.status === 200){
-                        const {name, email, rollno, photo} = res.data;
-                        setFormValues({name, email, rollno, photo} ); 
+                        const {name, email, rollno, photo, ipfs} = res.data;
+                        setFormValues({name, email, rollno, photo, ipfs} ); 
                     }else{
                         Promise.reject();
                     }
